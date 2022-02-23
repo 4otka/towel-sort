@@ -2,9 +2,14 @@
 // You should implement your task here.
 
 module.exports = function towelSort (matrix) {
-        let newMatrix = [].concat(...matrix);
-        newMatrix.sort( (a,b) => {
-            return a-b;
-        })
-  return newMatrix;
+    if (matrix == undefined) {
+        return []
+    }
+
+    matrix.reduce((pre, cur, i) => {
+        cur.sort((a, b) => !(i & 1) ? a - b : b - a).map(element => pre.push(element));
+        return pre;
+    }, []);
+
+    return [].concat(...matrix);
 }
